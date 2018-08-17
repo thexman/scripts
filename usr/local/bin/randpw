@@ -1,0 +1,13 @@
+#!/bin/bash
+
+size=10
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  echo "randpw [size]"
+  exit 0
+elif [[ "$1" != "" ]]; then
+  size="$1"
+fi
+
+cat /dev/urandom | env LC_CTYPE=C tr -dc '!@#.1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM' | head -c$size
+echo ""
