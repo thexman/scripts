@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+case "${1}" in
+  pre)
+  # your command to umount here
+    for m in `mount | grep /mnt | grep // | grep cifs | awk '{print $3}'`; do 
+      echo "Unmounting $m"
+      umount -f $m
+    done 
+  ;;
+  post)
+  # (possibly) your command to mount here
+  ;;
+esac
