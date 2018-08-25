@@ -5,6 +5,7 @@ case "${1}" in
   # your command to umount here
     for m in `mount | grep /mnt | grep // | grep cifs | awk '{print $3}'`; do 
       echo "Unmounting $m"
+      fuser -cuk $m
       umount -f $m
     done 
   ;;
