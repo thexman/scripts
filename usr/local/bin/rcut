@@ -1,0 +1,7 @@
+#!/bin/bash
+#Examples:
+# "echo abcd | rcut 1" will output d
+# "echo abcd | rcut 1-" will output abcd
+# "echo abcd | rcut 2-" will output abc
+count=$(($1 + 1))
+cat /dev/stdin | rev | cut -c "$count-" | rev
