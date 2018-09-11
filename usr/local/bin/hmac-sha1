@@ -1,4 +1,4 @@
 #!/bin/bash
 VALUE=$1
 KEY=$2
-echo -n $VALUE | openssl dgst -sha1 -hmac $KEY
+echo -n $VALUE | openssl dgst -sha1 -binary -hmac $KEY
