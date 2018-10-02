@@ -1,0 +1,21 @@
+#!/usr/local/bin/bash
+printShared() {
+  id=$1
+  declare -A map
+  info=`gdrive info $id`
+  readarray -t lines <<<"$info"
+  for line in "${lines[@]}"; do
+    key=${line%%:*}
+    value=${line#*: }
+    map[$key]=$value  ## Or simply ary[${line%%=*}]=${line#*=}
+  done
+
+  if [[ "True" == "${map[Shared]}" ]]; then
+    echo "${map[Path]}"
+  fi
+}
+
+gdrive list -m 100000000 | awk '{print $1}' | sed 1d | while read -r id; do
+  printShared $id  
+done
+
